@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<!-- saved from url=(0047)http://doc.gold.ac.uk/~lfedd001/three/demo.html -->
-<html lang="en" class="mdl-js">
+<html lang="en">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<meta http-equiv="Access-Control-Allow-Origin" content="*" />
 		<title>UMAP VS TSNE</title>
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		<style>
@@ -39,60 +37,11 @@
 			}
 
 		</style>
-		<style type="text/css">/*
-		<div id="__sound-pirate" class="__sound-pirate-at-left">
-		<a class="__sound-pirate-to-left"><img src="chrome-extension://naaoeihcbaeganoldlfjnomncgdcdnjf/img/arrowl32.png"></a>
-		<a class="__sound-pirate-download" download href=""><img src="chrome-extension://naaoeihcbaeganoldlfjnomncgdcdnjf/img/music32.png"></a>
-		<a class="__sound-pirate-to-right"><img src="chrome-extension://naaoeihcbaeganoldlfjnomncgdcdnjf/img/arrowr32.png"></a>
-		</div>
-		*/
-			#__sound-pirate {
-			margin: 0 4px 4px 4px;
-			padding: 0;
-			border: 0;
-			box-sizing: border-box;
-			width: 32px;
-			position: fixed;
-			bottom: 0;
-			left: 0;
-			z-index: 2147483647;
-			cursor: pointer;
-			transition: left 1s ease; }
-			#__sound-pirate.__sound-pirate-at-left:hover .__sound-pirate-to-right {
-			display: block; }
-			#__sound-pirate.__sound-pirate-at-right:hover .__sound-pirate-to-left {
-			display: block; }
-			#__sound-pirate.__sound-pirate-at-right {
-			left: calc(100% - 32px - 4px); }
-			#__sound-pirate * {
-			margin: 0;
-			padding: 0;
-			box-sizing: border-box; }
-			#__sound-pirate .__sound-pirate-to-left, #__sound-pirate .__sound-pirate-to-right {
-			display: none;
-			position: absolute;
-			width: 14px;
-			top: 0; }
-			#__sound-pirate .__sound-pirate-to-left {
-			right: 100%; }
-			#__sound-pirate .__sound-pirate-to-right {
-			left: 100%; }
-			#__sound-pirate img {
-			display: block; }
-			#__sound-pirate .__sound-pirate-download {
-			display: block;
-			transform: rotate(0turn);
-			transition: transform 1s ease; }
-		</style>
-		<style data-styled-components=""></style>
 	</head>
-
-
-
 
 	<body>
 		<link rel="stylesheet" href="./UMAP VS TSNE_files/icon">
-		<link rel="stylesheet" href="./UMAP VS TSNE_files/material.blue_grey-deep_orange.min.css">
+		<link rel="stylesheet" href="./UMAP VS TSNE_files/material.css">
 		<script defer="" src="./UMAP VS TSNE_files/material.min.js"></script>
 
 		<script src="./UMAP VS TSNE_files/three.min.js"></script>
@@ -101,22 +50,25 @@
 
 		<!-- The drawer is always open in large screens. The header is always shown,
 		  even in small screens. -->
-		<div class="mdl-layout__container"><div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header has-drawer is-upgraded" data-upgraded=",MaterialLayout">
-            <header class="mdl-layout__header is-casting-shadow"><div aria-expanded="false" role="button" tabindex="0" class="mdl-layout__drawer-button"><i class="material-icons"></i></div>
+		<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer
+					mdl-layout--fixed-header">
+            <header class="mdl-layout__header">
                 <div id="header" class="mdl-layout__header-row">
                     <div class="mdl-layout-spacer"></div>
 					<nav class="mdl-navigation">
 						<h6 id="filename"></h6>
 					</nav>
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right is-upgraded" data-upgraded=",MaterialTextfield">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+                     			mdl-textfield--floating-label mdl-textfield--align-right">
 
 	                    <div class="mdl-textfield__expandable-holder">
-	                        <input class="mdl-textfield__input" type="text" name="sample" id="fixed-header-drawer-exp">
+	                        <input class="mdl-textfield__input" type="text" name="sample"
+								   id="fixed-header-drawer-exp">
 	                    </div>
                     </div>
                 </div>
 			</header>
-		        <div class="mdl-layout__drawer" id="drawer" aria-hidden="true">
+		        <div class="mdl-layout__drawer" id="drawer">
 		            <span class="mdl-layout-title">Audio Explorer</span>
 	            	<nav class="mdl-navigation">
 
@@ -126,9 +78,9 @@
 									MFCC
 								</span>
 								<span class="mdl-list__item-secondary-action">
-									<label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect mdl-js-ripple-effect--ignore-events is-checked is-upgraded" for="feature-list-option-1" data-upgraded=",MaterialRadio,MaterialRipple">
+									<label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect " for="feature-list-option-1">
 										<input type="radio" id="feature-list-option-1" class="mdl-radio__button" name="options" value="mfcc" oninput="updateGraph()" onchange="updateGraph()" checked="">
-									<span class="mdl-radio__outer-circle"></span><span class="mdl-radio__inner-circle"></span><span class="mdl-radio__ripple-container mdl-js-ripple-effect mdl-ripple--center" data-upgraded=",MaterialRipple"><span class="mdl-ripple"></span></span></label>
+									</label>
 								</span>
 							</li>
 
@@ -137,9 +89,9 @@
 									Wavenet
 								</span>
 								<span class="mdl-list__item-secondary-action">
-									<label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect mdl-js-ripple-effect--ignore-events is-upgraded" for="feature-list-option-2" data-upgraded=",MaterialRadio,MaterialRipple">
+									<label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="feature-list-option-2">
 										<input type="radio" id="feature-list-option-2" class="mdl-radio__button" name="options" value="wavenet" oninput="updateGraph()" onchange="updateGraph()">
-									<span class="mdl-radio__outer-circle"></span><span class="mdl-radio__inner-circle"></span><span class="mdl-radio__ripple-container mdl-js-ripple-effect mdl-ripple--center" data-upgraded=",MaterialRipple"><span class="mdl-ripple"></span></span></label>
+									</label>
 								</span>
 							</li>
 						</ul>
@@ -154,9 +106,9 @@
 									UMAP
 								</span>
 								<span class="mdl-list__item-secondary-action">
-									<label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect mdl-js-ripple-effect--ignore-events is-checked is-upgraded" for="method-list-option-1" data-upgraded=",MaterialRadio,MaterialRipple">
-										<input type="radio" id="method-list-option-1" class="mdl-radio__button" name="methodoptions" value="umap" oninput="updateGraph()" onchange="updateGraph()" checked="">
-									<span class="mdl-radio__outer-circle"></span><span class="mdl-radio__inner-circle"></span><span class="mdl-radio__ripple-container mdl-js-ripple-effect mdl-ripple--center" data-upgraded=",MaterialRipple"><span class="mdl-ripple"></span></span></label>
+									<label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="method-list-option-1">
+										<input type="radio" id="method-list-option-1" class="mdl-radio__button" name="methodoptions" value="umap" oninput="updateGraph()" onchange="updateGraph()" checked>
+									</label>
 								</span>
 							</li>
 
@@ -165,9 +117,9 @@
 									t-SNE
 								</span>
 								<span class="mdl-list__item-secondary-action">
-									<label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect mdl-js-ripple-effect--ignore-events is-upgraded" for="method-list-option-2" data-upgraded=",MaterialRadio,MaterialRipple">
+									<label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="method-list-option-2">
 										<input type="radio" id="method-list-option-2" class="mdl-radio__button" name="methodoptions" value="tsne" oninput="updateGraph()" onchange="updateGraph()">
-									<span class="mdl-radio__outer-circle"></span><span class="mdl-radio__inner-circle"></span><span class="mdl-radio__ripple-container mdl-js-ripple-effect mdl-ripple--center" data-upgraded=",MaterialRipple"><span class="mdl-ripple"></span></span></label>
+									</label>
 								</span>
 							</li>
 
@@ -177,9 +129,9 @@
 									PCA
 								</span>
 								<span class="mdl-list__item-secondary-action">
-									<label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect mdl-js-ripple-effect--ignore-events is-upgraded" for="method-list-option-3" data-upgraded=",MaterialRadio,MaterialRipple">
+									<label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="method-list-option-3">
 										<input type="radio" id="method-list-option-3" class="mdl-radio__button" name="methodoptions" value="pca" oninput="updateGraph()" onchange="updateGraph()">
-									<span class="mdl-radio__outer-circle"></span><span class="mdl-radio__inner-circle"></span><span class="mdl-radio__ripple-container mdl-js-ripple-effect mdl-ripple--center" data-upgraded=",MaterialRipple"><span class="mdl-ripple"></span></span></label>
+									</label>
 								</span>
 							</li>
 						</ul>
@@ -189,16 +141,15 @@
 								</p><div class="mdl-card__supporting-text">
 									<p id="slider-text-1">Neighbours</p>
 								</div>
-								<div class="mdl-slider__container"><input class="mdl-slider mdl-js-slider is-upgraded" type="range" id="slider1" min="1" max="5" step="1" oninput="updateGraph()" onchange="updateGraph()" data-upgraded=",MaterialSlider"><div class="mdl-slider__background-flex"><div class="mdl-slider__background-lower" style="flex: 0.5 1 0%;"></div><div class="mdl-slider__background-upper" style="flex: 0.5 1 0%;"></div></div></div>
+								<input class="mdl-slider mdl-js-slider" type="range" id="slider1" min="1" max="5" step="1" oninput="updateGraph()" onchange="updateGraph()">
 								<div class="mdl-card__supporting-text">
 									<p id="slider-text-2">Distances</p>
 								</div>
-								<div class="mdl-slider__container"><input class="mdl-slider mdl-js-slider is-upgraded" type="range" id="slider2" min="1" max="5" step="1" oninput="updateGraph()" onchange="updateGraph()" data-upgraded=",MaterialSlider"><div class="mdl-slider__background-flex"><div class="mdl-slider__background-lower" style="flex: 0.5 1 0%;"></div><div class="mdl-slider__background-upper" style="flex: 0.5 1 0%;"></div></div></div>
+								<input class="mdl-slider mdl-js-slider" type="range" id="slider2" min="1" max="5" step="1" oninput="updateGraph()" onchange="updateGraph()">
 							<p></p>
 						</div>
 
-		            	<a class="mdl-navigation__link" href="https://medium.com/@LeonFedden">Blog</a>
-		            	<a class="mdl-navigation__link" href="https://twitter.com/LeonFedden">Twitter</a>
+		            	<a class="mdl-navigation__link" href="https://www.linkedin.com/in/%E4%BA%91-%E8%B5%B5-087724165/">LinkedIn</a>
 	            	</nav>
 		        </div>
 		    <main class="mdl-layout__content">
@@ -208,7 +159,7 @@
 					<div id="container"></div>
 				</div>
 		    </main>
-		<div class="mdl-layout__obfuscator"></div></div></div>
+		</div>
 
 		<script type="text/javascript" src="./UMAP VS TSNE_files/data.json"></script>
 		<script src="./UMAP VS TSNE_files/webaudiox.js"></script>
@@ -237,8 +188,7 @@
 			}
 
 			var filePaths = data['filenames'];
-
-
+			var soundClass = data['class'];
 			var renderer, scene, camera, stats;
 			var pointclouds;
 			var raycaster;
@@ -255,7 +205,7 @@
 			var target = null;
 			var previousSampleIndex = -1;
 			var threshold = 0.1;
-			var pointSize = 2;
+			var pointSize = 20;
 			var width = 150;
 			var length = 150;
 
@@ -307,6 +257,7 @@
 				target = generatePositionsFromData(targetData);
 				interpolating = true;
 				interpolatingAmount = 0;
+				document.getElementById("filename").innerHTML = "";
 			}
 
 			function generatePositionsFromData(data) {
@@ -326,23 +277,23 @@
 				return positions;
 			}
 
+
 			function generatePointCloudGeometry(data) {
 
 				var geometry = new THREE.BufferGeometry();
 				var positions = generatePositionsFromData(data);
 
-				var colors = new Float32Array(data.length * 3);
-				var color = new THREE.Color();
-				for (var i = 0; i < data.length; ++i) {
-
-					color.setHSL(0.8, .8, .5);
-					colors[3 * i] = color.r;
-					colors[3 * i + 1] = color.g;
-					colors[3 * i + 2] = color.b;
+				var colors_t = new Float32Array(data.length * 3);
+				var color_t = new THREE.Color();
+				for (var p = 0; p < ((data.length)); ++p) {
+					color_t.setHSL(0.7, .8, .5);
+					colors_t[3 * p] = color_t.r;
+					colors_t[3 * p + 1] = color_t.g;
+					colors_t[3 * p + 2] = color_t.b;
 				}
+				geometry.addAttribute('color', new THREE.BufferAttribute(colors_t, 3));
 
 				geometry.addAttribute('position', new THREE.BufferAttribute(positions, 3));
-				geometry.addAttribute('color', new THREE.BufferAttribute(colors, 3));
 				geometry.computeBoundingBox();
 
 				return geometry;
@@ -370,7 +321,7 @@
 
 				clock = new THREE.Clock();
 
-				const near_plane = 2;
+				const near_plane = 30;
 				const far_plane = 100;
 
 				// Set up camera and scene
@@ -391,12 +342,13 @@
 
 				pointclouds = [ pcBuffer ];
 
-				//
 
-				var sphereGeometry = new THREE.SphereGeometry( 0.1, 32, 32 );
-				var sphereMaterial = new THREE.MeshBasicMaterial( { color: 0xff0000 } );
+				// 骨架
+				var sphereGeometry = new THREE.SphereGeometry( 0.07, 16, 16 );
+				// 皮肤
+				var sphereMaterial = new THREE.MeshBasicMaterial( { color: 0xFF1493 } );
 
-				for ( var i = 0; i < 40; i++ ) {
+				for ( var i = 0; i < 5; i++ ) {
 
 					var sphere = new THREE.Mesh( sphereGeometry, sphereMaterial );
 					scene.add( sphere );
@@ -409,6 +361,7 @@
 				renderHeight = window.innerHeight - titleHeight;
 				renderer = new THREE.WebGLRenderer();
 				renderer.setPixelRatio(window.devicePixelRatio);
+				// 背景色 = 白
 				renderer.setClearColor(0xffffff, 1);
 				renderer.setSize(renderWidth, renderHeight);
 				container.appendChild(renderer.domElement);
@@ -422,6 +375,7 @@
 
 				stats = new Stats();
 				container.appendChild( stats.dom );
+
 
 				//
 
@@ -502,13 +456,13 @@
 
 					if (previousSampleIndex != intersection.index) {
 						let filepath = filePaths[intersection.index];
+						let soundclass = soundClass[intersection.index];
 						previousSampleIndex = intersection.index;
 
 						// load a sound and play it immediatly
 						let file = filepath;
 						var localhost = "http://localhost:7000/";
 						file = localhost + file;
-						console.log(file);
 					    WebAudiox.loadBuffer(context, file, function(buffer){
 					        // init AudioBufferSourceNode
 					        var source  = context.createBufferSource();
@@ -520,6 +474,7 @@
 					    });
 
 						document.getElementById("filename").innerHTML = filepath;
+						console.log(intersection.index)
 					}
 
 					spheres[spheresIndex].position.copy(intersection.point);
